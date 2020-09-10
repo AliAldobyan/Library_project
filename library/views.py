@@ -1,10 +1,12 @@
-from django.shortcuts import render, redirect
-from .models import Book
-from .forms import SigninForm, MembershipForm, BookForm
 from django.contrib.auth import login, authenticate, logout
-from django.http import Http404
 from django.db.models import Q
-# Create your views here.
+from django.http import Http404
+from django.shortcuts import render, redirect
+
+from .forms import SigninForm, MembershipForm, BookForm
+from .models import Book
+
+
 
 def create_membership(request):
     form = MembershipForm()
@@ -45,6 +47,7 @@ def signout(request):
     logout(request)
     return redirect("signin")
 
+# rename the view
 def library_list(request):
     if not (request.user.is_authenticated):
         return redirect('signin')
@@ -77,6 +80,7 @@ def create_book(request):
         return redirect('signin')
     if not request.user.is_staff:
         raise Http404
+
     form = BookForm()
     if request.method == "POST":
         form = BookForm(request.POST)
@@ -94,6 +98,7 @@ def update_book(request, book_id):
         return redirect('signin')
     if not request.user.is_staff:
         return redirect('library-list')
+
     book = Book.objects.get(id=book_id)
     form = BookForm(instance=book)
     if request.method == "POST":
@@ -112,6 +117,7 @@ def delete_book(request, book_id):
         return redirect('signin')
     if not request.user.is_staff:
         return redirect('library-list')
+        
     book = Book.objects.get(id=book_id)
     book.delete()
     return redirect('library-list')

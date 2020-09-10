@@ -12,14 +12,16 @@ class BookForm(forms.ModelForm):
         	'year_of_release': forms.DateInput(attrs={'type':'date'}),
         }
 
+
 class MembershipForm(forms.ModelForm):
+    email = forms.EmailField(required=True)
+
     class Meta:
         model = User
-        email = forms.EmailField(required=True)
-        fields = ['username', 'email' ,'password']
+        fields = ['username', 'email' ,'password', ]
 
         widgets={
-        'password': forms.PasswordInput(),
+            'password': forms.PasswordInput(),
         }
 
 
