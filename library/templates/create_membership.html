@@ -1,19 +1,19 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
 
-{% block title %}Signup{% endblock title %}
+{% block title %}Create a membership{% endblock title %}
 
 {% block content %}
 
 <br>
-<div class="card">
+<div class="card text-white bg-dark">
   <h5 class="card-header">Create Membership</h5>
   <div class="card-body">
     <p class="card-text">
-        <form action="{% url 'signup' %}" method="POST">
+        <form action="{% url 'create-membership' %}" method="POST">
             {% csrf_token %}
             {{form|crispy}}
-            <input type="submit" value="Create membership" class="btn btn-outline-primary">
+            <input type="submit" value="Create membership" class="btn btn-primary btn-block">
         </form>
     </p>
   </div>

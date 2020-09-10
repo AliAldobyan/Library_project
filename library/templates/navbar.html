@@ -11,10 +11,10 @@
       {% if request.user.is_authenticated %}
         {% if request.user.is_staff %}
           <li class="nav-item">
-            <a class="nav-link" href="">Add a book</a>
+            <a class="nav-link" href="{% url 'book-create' %}">Add a book</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'signup' %}">Create a membership</a>
+            <a class="nav-link" href="{% url 'create-membership' %}">Create a membership</a>
           </li>
         {% endif %}
 
@@ -22,7 +22,7 @@
           <a class="nav-link" href="{% url 'signout' %}">Signout</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" >Hello: {{request.user}}</a>
+          <a class="nav-link" >Signed in as: {{request.user}}</a>
         </li>
       {% else %}
         <li class="nav-item">
@@ -35,7 +35,7 @@
     </ul>
 
     <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="text" name='q' placeholder="I don't do anything">
+      <input class="form-control mr-sm-2" type="text" name='q' placeholder="Search...">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
 

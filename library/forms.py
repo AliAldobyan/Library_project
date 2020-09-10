@@ -1,9 +1,18 @@
 from django import forms
+from .models import Book
 from django.contrib.auth.models import User
 
 
+class BookForm(forms.ModelForm):
+    class Meta:
+        model = Book
+        fields = '__all__'
 
-class SignupForm(forms.ModelForm):
+        widgets = {
+        	'year_of_release': forms.DateInput(attrs={'type':'date'}),
+        }
+
+class MembershipForm(forms.ModelForm):
     class Meta:
         model = User
         email = forms.EmailField(required=True)

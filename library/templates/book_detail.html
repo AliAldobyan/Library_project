@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Detail{% endblock title %}
+
+{% block content %}
+
+<br>
+<div class="card text-white bg-dark" >
+  <h5 class="card-header">Book Info</h5>
+  <div class="card-body ">
+    <hr>
+    <h5 class="card-title">Book Name: <small>{{book.name}}</small></h5>
+    <hr>
+    <h5 class="card-title">Book Author: <small>{{book.author}}</small></h5>
+    <hr>
+    <p class="card-text">Year of release: {{book.year_of_release}}</p>
+    <hr>
+    <p class="card-text">Book ISBN: {{book.isbn}}</p>
+    <hr>
+    <p class="card-text">Genre: {{book.genre}}</p>
+    <hr>
+    {% if request.user.is_staff %}
+    <p class="card-text"> Available: {{book.available}}</p>
+    <p class="card-text"> Borrowed: {{book.borrowed}}</p>
+    <hr>
+
+    <div class="row text-center">
+        <div class="col-md-6">
+            <a href="{% url 'book-update' book.id %}" class="btn btn-primary btn-block">Update</a>
+        </div>
+        <div class="col-md-6">
+            <a href="{% url 'book-delete' book.id %}" class="btn btn-danger btn-block">Delete</a>
+        </div>
+
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock content %}
